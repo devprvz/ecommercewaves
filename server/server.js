@@ -206,7 +206,6 @@ app.get('/api/users/logout', auth, (req, res) => {
 
 app.post('/api/users/register', (req, res) => {
     const user = new User(req.body);
-    console.log(req.body);
     user.save((err, doc) => {
         if (err) return res.json({ success: false, err })
         res.status(200).json({
@@ -217,7 +216,6 @@ app.post('/api/users/register', (req, res) => {
 
 app.post('/api/users/login', (req, res) => {
     //find email
-    console.log(req.body);
     User.findOne({ 'email': req.body.email }, (err, user) => {
 
         if (!user) return res.json({ loginSuccess: false, message: 'Auth fails, email not found' })
